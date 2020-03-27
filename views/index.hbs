@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Website building with 11ty">
+    <meta name="author" content="Kyriakos Chatzidimitriou">
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Websitebuilder</title>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+      <div class="one column"></div>
+      <div class="ten columns">
+        <h1>Websitebuilder</h1>
+        <p>{{ message }}</p>
+        <form id="my_form" action="/websites" method="post">
+          <div class="row">
+            <div class="six columns">
+              <label for="title">Webiste Title</label>
+              <input class="u-full-width" type="text" placeholder="Title" id="title" name="title">
+            </div>
+          </div>
+          <div class="row">
+              <label for="file">Image</label>
+              <input class="u-full-width" type="file" id="file" name="file">
+          </div>
+          <div class="row">
+            <input class="button-primary" type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+      <div class="one column"></div>
+  </div>
+  </body>
+  <script type="text/javascript">
+    $("#my_form").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    var post_url = $(this).attr("action"); //get form action url
+    var request_method = $(this).attr("method"); //get form GET/POST method
+    var form_data = new FormData(this); //Creates new FormData object
+    console.log(...form_data)
+      $.ajax({
+          url : post_url,
+          type: request_method,
+          data : form_data,
+      contentType: false,
+      cache: false,
+      processData:false
+      }).done(function(response){ //
+        console.log(response);
+      });
+  });
+  </script>
+</html>
