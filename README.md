@@ -14,19 +14,12 @@ Install the app dependencies:
 npm install
 ```
 
-Build the nginx Docker image:
-
-```bash
-cd nginx
-docker build --tag webserver:latest .
-```
-
 ## Running the app
 
 First we are going to run the nginx webserver:
 
 ```bash
-docker run --publish 8080:80 --detach --name webserver webserver:latest
+docker run --name webserver -d -p 8080:80 nginx
 ```
 
 and check with your browser that it works at http://localhost:8080/
@@ -42,3 +35,4 @@ and check with your browser that is works at http://localhost:3000/
 
 ## Working the app
 
+Checkout this [blog post](https://medium.com/@kyrcha/a-simple-diy-website-builder-2c38855b2d90?sk=7398337ad55bbcd609d9c97babafe291) on Medium.
