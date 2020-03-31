@@ -26,12 +26,17 @@
       <div class="one column"></div>
       <div class="ten columns">
         <h1>Websitebuilder</h1>
-        <p>{{ message }}</p>
         <form id="my_form" action="/websites" method="post">
           <div class="row">
             <div class="six columns">
-              <label for="title">Webiste Title</label>
+              <label for="title">Website Title</label>
               <input class="u-full-width" type="text" placeholder="Title" id="title" name="title">
+            </div>
+          </div>
+          <div class="row">
+            <div class="six columns">
+              <label for="slug">Slug</label>
+              <input class="u-full-width" type="text" placeholder="Slug" id="slug" name="slug">
             </div>
           </div>
           <div class="row">
@@ -61,8 +66,12 @@
       cache: false,
       processData:false
       }).done(function(response){ //
-        console.log(response);
-      });
+        alert( "success" );
+      }).fail(function(err) {
+        alert( "error" );
+      }).always(function() {
+        $('#my_form').trigger("reset");
+      })
   });
   </script>
 </html>
